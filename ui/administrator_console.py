@@ -11,6 +11,17 @@ class ConsoleUIAdministrator:
               "7.Vizualizati evenimentele care au participanti\n"
               "0.Iesiti din modul administrator\n")
 
+    def __add_event(self):
+        print("Introduceti informatiile despre eveniment:")
+        id = input("ID: ")
+        name = input("Nume: ")
+        city = input("Oras: ")
+        maxSpots = int(input("Numar maxim de locuri: "))
+        startDate = input("Data de inceput: ")
+        finishDate = input("Data finala: ")
+
+        self.__event_service.add_event(id, name, city, maxSpots, startDate, finishDate)
+
     def run(self):
         while True:
             self.__print_menu()
