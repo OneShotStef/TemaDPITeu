@@ -17,5 +17,17 @@ class EventService:
         event = Event(id, 0, 0, 0, 0, 0, 0)
         self.__repository.delete(event)
 
-    def get_all_animals(self):
+    def get_all_events(self):
         return self.__repository.get_all()
+
+    def get_events_with_participants(self):
+        nou_list = []
+        event_list = self.__repository.get_all()
+        for event in event_list:
+            if event.get_participants() > 0:
+                nou_list.append(event)
+        return nou_list
+
+
+
+
