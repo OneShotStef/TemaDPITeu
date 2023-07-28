@@ -28,7 +28,7 @@ class ConsoleUIAdministrator:
         startDate = input("Data de inceput: ")
         finishDate = input("Data finala: ")
 
-        self.__event_service.add_event(id, name, city, participantsNumber, maxSpots, startDate, finishDate)
+        self.__event_service.add_event(id, name, city, participantsNumber, maxSpots, startDate, finishDate, 0)
 
     def __delete_event(self):
         id = input("Event id: ")
@@ -39,7 +39,29 @@ class ConsoleUIAdministrator:
             print(event)
 
     def __show_events_with_participants(self):
-        for event in self.__event_service.get_all_events()
+        ok = 0
+        for event in self.__event_service.get_events_with_participants():
+            print(event)
+            ok = 1
+        if ok == 0:
+            print("Nu exista evenimente cu participanti")
+
+    def __change_event_data(self):
+        print("Introduceti informatiile despre eveniment:")
+        id = input("ID: ")
+        name = input("Nume: ")
+        city = input("Oras: ")
+        maxSpots = int(input("Numar maxim de locuri: "))
+        participantsNumber = int(input("Numarul participantilor: "))
+        startDate = input("Data de inceput: ")
+        finishDate = input("Data finala: ")
+
+        self.__event_service.change_event_data(id, name, city, participantsNumber, maxSpots, startDate, finishDate)
+
+    def __show_events_in_city(self):
+        city = input("Introduceti orasul pentru care doriti sa vizualizati evenimentele: ")
+        for event in self.__event_service.get_events_in_city(city):
+            print(event)
 
     def run(self):
         while True:
@@ -53,11 +75,11 @@ class ConsoleUIAdministrator:
                 elif command == 2:
                     self.__delete_event()
                 elif command == 3:
-                    print("something")
+                    self.__change_event_data()
                 elif command == 4:
                     self.__show_all_events()
                 elif command == 5:
-                    print("udk")
+                    self.__show_events_in_city()
                 elif command == 6:
                     print("idk")
                 elif command == 7:

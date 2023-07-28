@@ -1,5 +1,5 @@
 class Repository:
-    def __init__(self, entities_list):
+    def __init__(self, entities_list = []):
         self.__entities_list = entities_list
 
     def find_position(self, entity):
@@ -10,11 +10,11 @@ class Repository:
 
     def add(self, entity):
         position = self.find_position(entity)
-        if  position is not None:
+        if position is not None:
             raise Exception("Entity already exists!")
         self.__entities_list.append(entity)
 
-    def delete(self,entity):
+    def delete(self, entity):
         position = self.find_position(entity)
         if position is None:
             raise Exception("Entity does not exist!")
@@ -24,3 +24,10 @@ class Repository:
         if len(self.__entities_list) == 0:
             raise Exception("No entities!")
         return self.__entities_list
+
+    def change(self, entity):
+        position = self.find_position(entity)
+        if position is None:
+            raise Exception("Entity do not exists!")
+        del self.__entities_list[position]
+        self.__entities_list.append(entity)

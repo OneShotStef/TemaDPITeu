@@ -1,4 +1,11 @@
+from service.event_service import EventService
 from ui.console import ConsoleUI
+from repository.repository import Repository
+from entities.event import Event
+from service.participant_service import ParticipantService
+from entities.participant import Participant
+from datetime import datetime
+
 
 # This is a sample Python script.
 
@@ -17,5 +24,11 @@ if __name__ == '__main__':
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 """
-ui = ConsoleUI()
+event = Event(1, "Concert", "Bucuresti", 0, 100, "2021-05-01", "2021-05-02")
+repo = Repository([event])
+eventService = EventService(repo)
+participant = Participant("Andrei", None, 0)
+repo = Repository([participant])
+participantService = ParticipantService(repo)
+ui = ConsoleUI(eventService, participantService)
 ui.run()

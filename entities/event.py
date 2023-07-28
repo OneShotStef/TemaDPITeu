@@ -1,5 +1,5 @@
 class Event:
-    def __init__(self, id, name, city, participantsNumber, maxSpots, startDate, finishDate):
+    def __init__(self, id, name, city, participantsNumber, maxSpots, startDate, finishDate, participantsList = []):
         self.__id = id
         self.__name = name
         self.__city = city
@@ -7,6 +7,7 @@ class Event:
         self.__maxSpots = maxSpots
         self.__startDate = startDate
         self.__finishDate = finishDate
+        self.__participantsList = participantsList
 
     def get_name(self):
         return self.__name
@@ -23,17 +24,30 @@ class Event:
     def get_participants(self):
         return self.__participantsNumber
 
-    def  get_startdate(self):
+    def set_participants(self, new_participants):
+        self.__participantsNumber = new_participants
+
+    def get_start_date(self):
         return self.__startDate
 
-    def get_finishdate(self):
+    def get_finish_date(self):
         return self.__finishDate
 
-    def get_maxspots(self):
+    def get_max_spots(self):
         return self.__maxSpots
 
+    def get_participants_list(self):
+        return self.__participantsList
+
+    def add_participant(self, participant):
+        self.__participantsList.append(participant)
+        if self.__participantsNumber >= self.__maxSpots:
+            print("Not enough spots")
+        else:
+            self.__participantsNumber += 1
+
     def __str__(self):
-        return "Event id: " + str(self.__id) + " Name: " + str(self.__name) + " City: " + str(self.__city) + " Participants: " + str(self.__participantsNumber) + " Max spots: " + str(self.__maxSpots) + " Start date: " + str(self.__startDate) + " Finish date: " + str(self.__finishDate)
+        return "Event id: " + str(self.__id) + "\nName: " + str(self.__name) + "\nCity: " + str(self.__city) + " Participants: " + str(self.__participantsNumber) + " Max spots: " + str(self.__maxSpots) + " Start date: " + str(self.__startDate) + " Finish date: " + str(self.__finishDate)
 
     def __eq__(self, other):
         return self.__id == other.__id
