@@ -39,11 +39,11 @@ class Event:
     def get_participants_list(self):
         return self.__participantsList
 
-    def add_participant(self, participant):
-        self.__participantsList.append(participant)
+    def add_participant_in_event(self, participant):
         if self.__participantsNumber >= self.__maxSpots:
             print("Not enough spots")
         else:
+            self.__participantsList.append(participant)
             self.__participantsNumber += 1
 
     def __str__(self):

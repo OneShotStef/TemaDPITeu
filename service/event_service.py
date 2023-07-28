@@ -1,6 +1,7 @@
 from entities.event import Event
 from repository.repository import Repository
 from datetime import datetime
+from service.participant_service import ParticipantService
 
 
 class EventService:
@@ -49,22 +50,18 @@ class EventService:
                 nou_list.append(event)
         return nou_list
 
-    def get_events_in_next_month(self):
+    def get_events_in_month(self, month):
         nou_list = []
         event_list = self.__repository.get_all()
         for event in event_list:
-            if event.get_start_date() - datetime <= 30:
+            if event.get_start_date().month == month:
                 nou_list.append(event)
         return nou_list
 
-    def register_participant(self, event_id, participant):
-        event = self.__repository.find_position(event_id)
-        event.add_participant(participant)
-        self.__repository.change(event)
-
     def register_event(self, event_id, participant):
-        event = self.__repository.find_position(event_id)
-        event.add_participant(participant)
+        event = self.__repository.find_by_id(event_id)
+        self.__repository.add(participant)
+        event.add_participant_in_event(participant)
         self.__repository.change(event)
 
 

@@ -8,8 +8,9 @@ class ParticipantService:
     def __init__(self, repository: Repository):
         self.__repository = repository
 
-    def add_participant(self, id, name, eventsList = []):
-        participant = Participant(id, name, eventsList)
+    def add_participant_in_service(self, participant):
+        if self.participant_exist(participant.get_name()):
+            raise Exception("Participant already exists!")
         self.__repository.add(participant)
 
     def participant_exist(self, participant_id):

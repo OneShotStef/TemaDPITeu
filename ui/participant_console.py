@@ -1,21 +1,20 @@
-from service.event_service import EventService
 from entities.participant import Participant
-from administrator_console import ConsoleUIAdministrator
 
 
 class ConsoleUIParticipant:
 
-    def __init__(self, participant_service):
+    def __init__(self, participant_service, event_service):
         self.__participant_service = participant_service
+        self.__event_service = event_service
 
     def __print_menu(self):
         print("\nParticipant choose\n"
               "Optiuni:\n"
-              "0.Iesiti din modul participant\n"
               "1.Vizualizati toate evenimentele\n"
               "2.Inscrieti-va la un eveniment\n"
               "3.Vizualizati evenimentele in urmatoarele 7 zile\n"
-              "4.Vizualizati evenimentele dintr-o anumita luna\n")
+              "4.Vizualizati evenimentele dintr-o anumita luna\n"
+              "0.Iesiti din modul participant\n")
 
     def __show_all_events(self):
         for event in self.__event_service.get_all_events():
@@ -27,7 +26,7 @@ class ConsoleUIParticipant:
 
     def __show_events_in_month(self):
         month = input("Introduceti numarul lunii (1-12): ")
-        for event in self.__event_service.get_events_in_next_month(month):
+        for event in self.__event_service.get_events_in_month(month):
             print(event)
 
     def __register_event(self):

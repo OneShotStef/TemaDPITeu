@@ -4,6 +4,9 @@ from repository.repository import Repository
 from entities.event import Event
 from service.participant_service import ParticipantService
 from entities.participant import Participant
+from ui.administrator_console import ConsoleUIAdministrator
+from ui.participant_console import ConsoleUIParticipant
+
 from datetime import datetime
 
 

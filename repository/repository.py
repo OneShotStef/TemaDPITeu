@@ -31,3 +31,9 @@ class Repository:
             raise Exception("Entity do not exists!")
         del self.__entities_list[position]
         self.__entities_list.append(entity)
+
+    def find_by_id(self, id):
+        for i in range(len(self.__entities_list)):
+            if self.__entities_list[i].get_id() == id:
+                return self.__entities_list[i]
+        return None
