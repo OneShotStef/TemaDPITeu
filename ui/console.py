@@ -9,9 +9,9 @@ class ConsoleUI:
     def __print_rol(self):
         print("\nAlegeti rolul\n"
               "Optiuni:\n"
-              "0.Administrator/Organizator\n"
-              "1.Participant\n"
-              "2.Iesiti din program")
+              "1.Administrator/Organizator\n"
+              "2.Participant\n"
+              "0.Iesiti din program")
 
     def run(self):
         self.__event_service.delete_event(1)
@@ -21,13 +21,13 @@ class ConsoleUI:
             try:
                 command = int(input("Choose the command:").strip())
                 if command == 0:
+                    break
+                elif command == 1:
                     ui = ConsoleUIAdministrator(self.__event_service)
                     ui.run()
-                elif command == 1:
+                elif command == 2:
                     ui = ConsoleUIParticipant(self.__participant_service)
                     ui.run()
-                elif command == 2:
-                    break
             except Exception as error:
                 print(error)
 

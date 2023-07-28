@@ -1,11 +1,12 @@
 from service.event_service import EventService
 from entities.participant import Participant
+from administrator_console import ConsoleUIAdministrator
 
 
 class ConsoleUIParticipant:
 
-    def __init__(self, event_service):
-        self.__event_service = event_service
+    def __init__(self, participant_service):
+        self.__participant_service = participant_service
 
     def __print_menu(self):
         print("\nParticipant choose\n"
